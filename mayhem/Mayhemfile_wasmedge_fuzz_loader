@@ -1,0 +1,9 @@
+project: savantenvs/wasmedge
+target: wasmedge_fuzz_loader
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/wasmedge_fuzz_loader/testsuite
+cmds:
+  - cmd: /mayhem/wasmedge_fuzz_loader
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/wasmedge_fuzz_loader.dict

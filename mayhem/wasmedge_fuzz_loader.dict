@@ -1,0 +1,63 @@
+# libFuzzer dictionary for the WebAssembly binary format (.wasm) loader/validator.
+# Tokens steer the mutator toward the WASM magic, version, and section ids so it reaches deeper
+# decode/validate paths instead of bouncing off the header.
+
+# Module preamble: magic "\0asm" + version 1
+magic="\x00\x61\x73\x6d"
+version="\x01\x00\x00\x00"
+preamble="\x00\x61\x73\x6d\x01\x00\x00\x00"
+
+# Section ids (leading byte of each section)
+sec_custom="\x00"
+sec_type="\x01"
+sec_import="\x02"
+sec_function="\x03"
+sec_table="\x04"
+sec_memory="\x05"
+sec_global="\x06"
+sec_export="\x07"
+sec_start="\x08"
+sec_element="\x09"
+sec_code="\x0a"
+sec_data="\x0b"
+sec_datacount="\x0c"
+sec_tag="\x0d"
+
+# Value / reference type encodings
+type_i32="\x7f"
+type_i64="\x7e"
+type_f32="\x7d"
+type_f64="\x7c"
+type_v128="\x7b"
+type_funcref="\x70"
+type_externref="\x6f"
+functype="\x60"
+
+# Limits flags
+limits_min="\x00"
+limits_minmax="\x01"
+
+# Import/export external kinds
+extern_func="\x00"
+extern_table="\x01"
+extern_memory="\x02"
+extern_global="\x03"
+
+# Common opcodes that appear in code bodies
+op_end="\x0b"
+op_unreachable="\x00"
+op_nop="\x01"
+op_block="\x02"
+op_loop="\x03"
+op_if="\x04"
+op_call="\x10"
+op_call_indirect="\x11"
+op_local_get="\x20"
+op_local_set="\x21"
+op_i32_const="\x41"
+op_i64_const="\x42"
+op_f32_const="\x43"
+op_f64_const="\x44"
+
+# Custom section name commonly present in real modules
+name_section="name"
