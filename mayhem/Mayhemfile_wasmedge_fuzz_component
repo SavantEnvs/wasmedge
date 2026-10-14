@@ -1,0 +1,8 @@
+project: savantenvs/wasmedge
+target: wasmedge_fuzz_component-mined-21e5d8d
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/wasmedge_fuzz_component-mined-21e5d8d/testsuite
+cmds:
+  - cmd: /mayhem/wasmedge_fuzz_component
+    libfuzzer: true
